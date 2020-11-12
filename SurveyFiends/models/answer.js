@@ -11,4 +11,4 @@ let answerModel = mongoose.Schema({
     collection: "Answers"
 });
 
-module.exports = mongoose.model('Answer', surveyModel);
+module.exports = mongoose.model('Answer', answerModel);

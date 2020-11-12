@@ -20,6 +20,6 @@ function addQuestion()
 var boxName="Question "+countBox; 
 document.getElementById('responce').innerHTML+='<br/><input type="hidden" name="questionsNumber" value='+countBox+'><br/>';
 document.getElementById('responce').innerHTML+='<br/><input type="text"  name="question" value=""<br/>';
- countBox += 1;
+countBox += 1;
     }
 }

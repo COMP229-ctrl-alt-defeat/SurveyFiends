@@ -44,7 +44,7 @@ router.post('/add', (req, res, next) => {
     let newSurvey = Survey({
         "authorName": req.body.name,
         "surveyName": req.body.author,
-        "surveyQuestion": req.body.question
+        "surveyQuestion": req.body.question //may need to delete
     });
 
     Survey.create(newSurvey, (err, Survey) =>{
