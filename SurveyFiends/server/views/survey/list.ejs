@@ -14,11 +14,10 @@
                 <!-- Header Row-->
                 <tr class="d-flex">
                     <th class="text-center col-4">Survey Name</th>
-                    <th class="text-center col-3">Author</th>
+                    <th class="text-center col-2">Author</th>
                     <th class="text-center col-2">Date Added</th>
-                    <th class="text-center col-1">Edit</th>
-                    <th class="text-center col-1">Delete</th>
-                    <th class="text-center col-1">Add Questions</th>
+                    <th class="text-center col-2">Edit/Add</th>
+                    <th class="text-center col-2">Delete</th>
                 </tr>
 
                 <!-- Repeatable Template Row -->
@@ -26,17 +25,14 @@
                 <% for(let count = 0; count < SurveyList.length; count++) { %>
                     <tr class="d-flex">
                         <td class="text-center col-4"><%= SurveyList[count].surveyName %></td>
-                        <td class="text-center col-3"><%= SurveyList[count].authorName %></td>
+                        <td class="text-center col-2"><%= SurveyList[count].authorName %></td>
                         <td class="text-center col-2"><%= SurveyList[count].authorPubDate.toDateString() %></td>
-                        <td class="text-center col-1">
-                        <a href="/survey-list/<%= SurveyList[count]._id %>" class="btn btn-warning"><i class="fa fa-edit"></i> Edit</a>
+                        <td class="text-center col-2">
+                        <a href="/survey-list/<%= SurveyList[count]._id %>" class="btn btn-warning"><i class="fa fa-edit"></i> Edit/Add</a>
                         </td>
-                        <td class="text-center col-1">
+                        <td class="text-center col-2">
                         <a href="/survey-list/delete/<%= SurveyList[count]._id %>" class="btn btn-danger"><i class="fa fa-trash-alt"></i> Delete</a>
                          </td>
-                         <td class="text-center col-1 pt-4">
-                          <a href="/survey-list/<%= SurveyList[count]._id %>/addQuestions" class="btn btn-primary rounded-circle"><i class="fa fa-plus"></i></a>
-                          </td>
                     </tr>
                 <% } %>
             </table>

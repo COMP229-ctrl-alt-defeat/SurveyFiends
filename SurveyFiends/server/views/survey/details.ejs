@@ -40,12 +40,12 @@
             </div>
             <% for(let count = 0; count < Questions.length; count++){ %>
               <div class="row px-4">
-                <h4>Question <%= count + 1 %></h1>
+                <h4>Question <%= Questions[count].questionsNumber %></h1>
               </div>
               <div class="row px-4">
                 <p class="col-10"><%=Questions[count].question%></p>
-                <a href="" class="col-1">edit</a>
-                <a href="" class="col-1">delete</a>
+                <a href="/survey-list/<%= SurveyList._id %>/editQuestions/<%= Questions[count]._id %>" class="col-1">edit</a>
+                <a href="/survey-list/deleteQuestion/<%= SurveyList._id %>/<%= Questions[count]._id %>" class="col-1">delete</a>
               </div>
             <% } %>
           </div>          

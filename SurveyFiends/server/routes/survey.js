@@ -41,8 +41,8 @@ router.get('/add', (req, res, next) => {
 
 router.post('/add', (req, res, next) => {
     let newSurvey = Survey({
-        "authorName": req.body.name,
-        "surveyName": req.body.author,
+        "surveyName": req.body.name,
+        "authorName": req.body.author,
     });
 
     Survey.create(newSurvey, (err, Survey) =>{
@@ -54,7 +54,7 @@ router.post('/add', (req, res, next) => {
         else 
         {
             //refresh list by redirec
-            res.redirect('/survey-list');
+            res.redirect('/survey-list/'+Survey._id);
         }
     });
 });
@@ -72,7 +72,7 @@ router.get('/:id', (req, res, next) => {
         }
         else
         {
-          Question.find({surveyID: id}, (err, questions) =>{
+          Question.find({surveyID: id}).sort("questionsNumber").exec((err, questions) =>{
             res.render('survey/details', {title: 'Edit Survey Details', SurveyList: surveyToEdit, Questions: questions});
           });
         }
@@ -87,8 +87,8 @@ router.get('/:id', (req, res, next) => {
   
     let editedSurvey = Survey({
       "_id": id,
-      "authorName": req.body.name,
-      "surveyName": req.body.author,
+      "surveyName": req.body.name,
+      "authorName": req.body.author,
     });
   
     Survey.updateOne({_id: id}, editedSurvey, (err) =>{
@@ -104,9 +104,33 @@ router.get('/:id', (req, res, next) => {
      });
   });
   
+  
+  
+  // GET - process the delete by user id
+  router.get('/delete/:id', (req, res, next) => {
+  
+    //removal of book that matches passed ID
+    let id = req.params.id;
+  
+    Survey.remove({_id: id}, (err) =>{
+      if(err)
+      {
+        console.log(err);
+        res.end(err);
+      }
+      else 
+      {
+      res.redirect('/survey-list')
+      }
+    });
+  
+  });
+
+
+  /* Question routes */
+
   router.get('/:id/addQuestions', (req, res, next) => {
     let id = req.params.id;
-    let count = 0;
 
     Question.find({surveyID: id}, (err, questionList) =>{
         if(err)
@@ -116,10 +140,7 @@ router.get('/:id', (req, res, next) => {
         }
         else
         {
-            questionList.forEach(element => {
-              count++;
-            });
-            res.render('survey/addQuestions', {title: 'Add Questions', count: count});
+            res.render('survey/addQuestions', {title: 'Add Question', Question:"", SurveyID:id});
         }    
     });
   });
@@ -143,16 +164,17 @@ router.get('/:id', (req, res, next) => {
       }
       else
         {
-          res.redirect('back');
+          res.redirect('/survey-list/'+id);
         }
      });
   });
   
-  router.get('/:id/editQuestions', (req, res, next) => {
+  router.get('/:id/editQuestions/:questionID', (req, res, next) => {
   
-    let id = req.params.id;
+    let questionid = req.params.questionID;
+    let surveyid = req.params.id;
   
-    Survey.findById(id, (err, surveyToEdit) =>{
+    Question.findById(questionid, (err, questionToEdit) =>{
         if(err)
         {
             console.log(err);
@@ -160,24 +182,26 @@ router.get('/:id', (req, res, next) => {
         }
         else
         {
-            res.render('survey/addQuestions', {title: 'Add Questions', SurveyList: surveyToEdit});
+            res.render('survey/addQuestions', {title: 'Edit Question', Question: questionToEdit, SurveyID: surveyid});
         }
     });
   });
   
   // POST - process the information passed from the details form and update the document
-  router.post('/:id/editQuestions', (req, res, next) => {
+  router.post('/:id/editQuestions/:questionID', (req, res, next) => {
   
     //Transfer of new book values/edited book values to the book that matches the passed ID
     let id = req.params.id;
+    let questionid = req.params.questionID;
   
     let editQuestion = Question({
+      "_id": questionid,
       "surveyID": id,
       "questionsNumber": req.body.questionsNumber,
       "question": req.body.question,
     });
   
-    Question.updateOne({surveyID: id}, editQuestion, (err) =>{
+    Question.updateOne({_id: questionid}, editQuestion, (err) =>{
       if(err)
       {
         console.log(err);
@@ -185,18 +209,18 @@ router.get('/:id', (req, res, next) => {
       }
       else
         {
-          res.redirect('/survey-list');
+          res.redirect('/survey-list/'+id);
         }
      });
   });
+
+  router.get('/deleteQuestion/:id/:questionID', (req, res, next) => {
   
-  // GET - process the delete by user id
-  router.get('/delete/:id', (req, res, next) => {
+    //removal of question that matches passed ID
+    let questionid = req.params.questionID;
+    let surveyID = req.params.id;
   
-    //removal of book that matches passed ID
-    let id = req.params.id;
-  
-    Survey.remove({_id: id}, (err) =>{
+    Question.remove({_id: questionid}, (err) =>{
       if(err)
       {
         console.log(err);
@@ -204,7 +228,7 @@ router.get('/:id', (req, res, next) => {
       }
       else 
       {
-      res.redirect('/survey-list')
+        res.redirect("/survey-list/"+surveyID);
       }
     });
   
