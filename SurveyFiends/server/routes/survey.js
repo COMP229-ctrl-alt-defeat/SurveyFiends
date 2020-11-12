@@ -33,7 +33,6 @@ router.get('/add', (req, res, next) => {
         else
         {
             //console.log(surveyList);
-
             res.render('survey/details', {title: 'Add New Survey', SurveyList: surveyList});            
         }
      });
@@ -44,7 +43,6 @@ router.post('/add', (req, res, next) => {
     let newSurvey = Survey({
         "authorName": req.body.name,
         "surveyName": req.body.author,
-        "surveyQuestion": req.body.question //may need to delete
     });
 
     Survey.create(newSurvey, (err, Survey) =>{
@@ -66,7 +64,6 @@ router.get('/:id', (req, res, next) => {
     //Finding specified book by ID and passing it to details view
     let id = req.params.id;
   
-    
     Survey.findById(id, (err, surveyToEdit) =>{
         if(err)
         {
@@ -75,7 +72,9 @@ router.get('/:id', (req, res, next) => {
         }
         else
         {
-            res.render('survey/details', {title: 'Edit Survey Details', SurveyList: surveyToEdit});
+          Question.find({surveyID: id}, (err, questions) =>{
+            res.render('survey/details', {title: 'Edit Survey Details', SurveyList: surveyToEdit, Questions: questions});
+          });
         }
     });
   });
@@ -106,8 +105,10 @@ router.get('/:id', (req, res, next) => {
   });
   
   router.get('/:id/addQuestions', (req, res, next) => {
+    let id = req.params.id;
+    let count = 0;
 
-    Question.find( (err, questionList) =>{
+    Question.find({surveyID: id}, (err, questionList) =>{
         if(err)
         {
             console.log(err);
@@ -115,7 +116,10 @@ router.get('/:id', (req, res, next) => {
         }
         else
         {
-            res.render('survey/addQuestions', {title: 'Add Questions'});
+            questionList.forEach(element => {
+              count++;
+            });
+            res.render('survey/addQuestions', {title: 'Add Questions', count: count});
         }    
     });
   });
@@ -139,7 +143,7 @@ router.get('/:id', (req, res, next) => {
       }
       else
         {
-          res.redirect('/survey-list');
+          res.redirect('back');
         }
      });
   });
