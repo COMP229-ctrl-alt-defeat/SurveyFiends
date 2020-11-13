@@ -28,7 +28,7 @@ router.get('/home', function(req, res, next) {
 
 /* GET About Us page. */
 router.get('/about', function(req, res, next) {
-  res.render('index', { title: 'About'});
+  res.render('about', { title: 'About'});
 });
 
 /* GET openSurveysList page. */
