@@ -56,7 +56,7 @@ router.get('/openSurveysList/:id', (req, res, err)=>{
         if(err){
           return console.log(err);
         }else{
-          res.location(SurveyQuestions[0]._id);
+          //res.location(SurveyQuestions[0]._id); -- Error 
           res.render('openSurveys/displaySurvey',{title:'Open Surveys', Survey: survey, Questions: SurveyQuestions});
         }
       })
