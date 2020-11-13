@@ -1,9 +1,8 @@
 let mongoose = require('mongoose');
 
 let answerModel = mongoose.Schema({
-    questionsNumber: String,
-    question: String,
-    responderName: String,
+    surveyID: String,
+    questionID: String,
     responderPubDate: {type: Date, default: Date.now},
     responderAnswer: Boolean
 },

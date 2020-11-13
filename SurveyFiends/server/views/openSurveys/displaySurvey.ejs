@@ -10,13 +10,18 @@
       <hr>
       <h4 class="row display-5 text-secondary justify-content-end">By: <%= Survey.authorName %> </h4>
     </div>
-    <form>
+    <form method="post">
+      <!-- <input type="hidden" name="surveyId" value="<%= Survey._id %> "> -->
       <% for( let index = 0; index < Questions.length; index++ ) { %>
         <div class="form-group">
           <h4>Question <%= Questions[index].questionsNumber %> </h4>
           <p class="pl-4"><%= Questions[index].question %> </p>
+
+          <input type="hidden" name="question<%= index %>" value="<%= Questions[index]._id %>">
+
           <label class="" for="t<%= index %>">True</label>
           <input type="radio" id="t<%= index %>" name="q<%= index %>" class="form-checked" value="true">
+                                                  <!-- q<%= index %> is there to avoid grouping all possible radio buttons into one -->
           <label class="" for="f<%= index %>">False</label>
           <input type="radio" id="f<%= index %>" name="q<%= index %>" class="form-checked" value="false">
         </div>

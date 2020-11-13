@@ -5,7 +5,7 @@ let mongoose = require('mongoose');
 // connect to our Survey Model
 let Survey = require('../models/survey');
 let Question = require('../models/question');
-let Answer = require('../models/survey');
+let Answer = require('../models/answer');
 
 /* GET Route for the Survey List page - READ OPeration */
 router.get('/', (req, res, next) => {
