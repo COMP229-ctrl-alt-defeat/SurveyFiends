@@ -6,8 +6,17 @@
         console.log("App Started...");
     }
 
-    window.addEventListener("load", Start);
+    // Ask user to confirm submission of form
+    $('#surveyComplete').on('click', (event)=>{        
+        if(confirm("Submit Survey?")){
+            console.log();
+        }else{
+            event.preventDefault();
+        }
+    })
 
+
+    window.addEventListener("load", Start);
 })();
 
 //Get Questions Add page by title

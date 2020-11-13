@@ -20,15 +20,15 @@
           <input type="hidden" name="question<%= index %>" value="<%= Questions[index]._id %>">
 
           <label class="" for="t<%= index %>">True</label>
-          <input type="radio" id="t<%= index %>" name="q<%= index %>" class="form-checked" value="true">
+          <input type="radio" id="t<%= index %>" name="q<%= index %>" class="form-checked" value="true" required>
                                                   <!-- q<%= index %> is there to avoid grouping all possible radio buttons into one -->
           <label class="" for="f<%= index %>">False</label>
-          <input type="radio" id="f<%= index %>" name="q<%= index %>" class="form-checked" value="false">
+          <input type="radio" id="f<%= index %>" name="q<%= index %>" class="form-checked" value="false" required>
         </div>
         <br>
         <% } %>
 
-        <button type="submit" class="btn btn-primary"><i class="fa fa-check-square-o"></i> Submit</button>
+        <button type="submit" id="surveyComplete" class="btn btn-primary"><i class="fa fa-check-square-o"></i> Submit</button>
         <a href="/openSurveysList" class="btn btn-warning"><i class="fa fa-undo"></i> Cancel</a>
     </form>
   </main>
