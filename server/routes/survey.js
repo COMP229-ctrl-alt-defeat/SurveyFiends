@@ -7,6 +7,13 @@ let Survey = require('../models/survey');
 let Question = require('../models/question');
 let Answer = require('../models/answer');
 
+router.get('*', (req, res, next) => {
+  if(!req.session.isLoggedIn)
+    res.redirect("/users/login");
+  else
+    next();
+});
+
 /* GET Route for the Survey List page - READ OPeration */
 router.get('/', (req, res, next) => {
     Survey.find((err, surveyList) => {
@@ -18,7 +25,7 @@ router.get('/', (req, res, next) => {
         {
             //console.log(surveyList);
 
-            res.render('survey/list', {title: 'Survey List', SurveyList: surveyList});           
+            res.render('survey/list', {title: 'Survey List', SurveyList: surveyList, isLoggedIn:(req.session.isLoggedIn)?true:false});           
         }
     });
 });
@@ -33,7 +40,7 @@ router.get('/add', (req, res, next) => {
         else
         {
             //console.log(surveyList);
-            res.render('survey/details', {title: 'Add New Survey', SurveyList: surveyList});            
+            res.render('survey/details', {title: 'Add New Survey', SurveyList: surveyList, isLoggedIn:(req.session.isLoggedIn)?true:false});            
         }
      });
   
@@ -73,7 +80,7 @@ router.get('/:id', (req, res, next) => {
         else
         {
           Question.find({surveyID: id}).sort("questionsNumber").exec((err, questions) =>{
-            res.render('survey/details', {title: 'Edit Survey Details', SurveyList: surveyToEdit, Questions: questions});
+            res.render('survey/details', {title: 'Edit Survey Details', SurveyList: surveyToEdit, Questions: questions, isLoggedIn:(req.session.isLoggedIn)?true:false});
           });
         }
     });
@@ -140,7 +147,7 @@ router.get('/:id', (req, res, next) => {
         }
         else
         {
-            res.render('survey/addQuestions', {title: 'Add Question', Question:"", SurveyID:id});
+            res.render('survey/addQuestions', {title: 'Add Question', Question:"", SurveyID:id, isLoggedIn:(req.session.isLoggedIn)?true:false});
         }    
     });
   });
@@ -182,7 +189,7 @@ router.get('/:id', (req, res, next) => {
         }
         else
         {
-            res.render('survey/addQuestions', {title: 'Edit Question', Question: questionToEdit, SurveyID: surveyid});
+            res.render('survey/addQuestions', {title: 'Edit Question', Question: questionToEdit, SurveyID: surveyid, isLoggedIn:(req.session.isLoggedIn)?true:false});
         }
     });
   });

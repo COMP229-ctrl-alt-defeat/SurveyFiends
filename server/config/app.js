@@ -4,6 +4,7 @@ let express = require('express');
 let path = require('path');
 let cookieParser = require('cookie-parser');
 let logger = require('morgan');
+let session=require('express-session');
 
 // database setup
 let mongoose = require('mongoose');
@@ -34,6 +35,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../../public')));
 app.use(express.static(path.join(__dirname, '../../node_modules')));
+
+//Sessions setup
+app.use(session({
+  secret: 'bigbadboys',
+  resave: true,
+  saveUninitialized: true,
+  cookie: { secure: false }
+}));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
