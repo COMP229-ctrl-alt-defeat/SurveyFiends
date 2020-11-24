@@ -25,14 +25,16 @@
               
               <div class="form-group">
                 <label for="surveyAuthorTextField">Author Name</label>
-                <input type="text" class="form-control" id="surveyAuthorTextField"
-                placeholder="Survey Author" name="author" value="<%= SurveyList.authorName %>" required>
+                <!-- <input type="text" class="form-control" id="surveyAuthorTextField"
+                placeholder="Survey Author" name="author" value="<%= SurveyList.authorName %>" required> -->
+                <select name="author" class="form-control">
+                  <option value="<%= isLoggedIn.username %>"><%= isLoggedIn.username %></option>
+                  <option value="Anonymous">Anonymous</option>
+                </select>                
               </div>
 
               <button type="submit" class="btn btn-primary"><i class="fa fa-check-square-o"></i> Submit</button>
               <a href="/survey-list" class="btn btn-warning"><i class="fa fa-undo"></i> Cancel</a>
-              <% if (SurveyList.surveyName != null && SurveyList.authorName != null) { %>
-              <% } %>
               
             </form>
           </div>
