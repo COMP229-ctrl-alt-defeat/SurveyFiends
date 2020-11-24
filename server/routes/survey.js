@@ -41,7 +41,7 @@ router.get('/', (req, res, next) => {
 
 router.get('/add', (req, res, next) => {
  
-    Survey.find((err, surveyList) => {
+    Survey.find({authorID: req.user._id},(err, surveyList) => {
         if(err)
         {
             return console.error(err);
@@ -59,6 +59,7 @@ router.post('/add', (req, res, next) => {
     let newSurvey = Survey({
         "surveyName": req.body.name,
         "authorName": req.body.author,
+        "authorID": req.user._id
     });
 
     Survey.create(newSurvey, (err, Survey) =>{

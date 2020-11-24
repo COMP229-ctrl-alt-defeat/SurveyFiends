@@ -30,13 +30,13 @@ let userAccountModel = mongoose.Schema({
     },
     created:
     {
-    type: Date,
-    defualt: Date.now
+        type: Date,
+        defualt: Date.now
     },
     updated:
     {
-    type: Date,
-    defualt: Date.now
+        type: Date,
+        defualt: Date.now
     },
 },
     {

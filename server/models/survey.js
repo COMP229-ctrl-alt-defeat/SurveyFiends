@@ -8,6 +8,7 @@ let thirtyDaysFromNow = ()=>{
 
 let surveyModel = mongoose.Schema({
     authorName: String,
+    authorID: String,
     surveyName: String,
     authorPubDate: {type: Date, default: Date.now},
     expiryDate: {type:Date, default: thirtyDaysFromNow}

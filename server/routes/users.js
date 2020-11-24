@@ -29,7 +29,7 @@ router.get('/login', function(req, res, next) {
 /* POST User Registration */
 router.post('/register', function(req, res, next) {
 
-  var name=req.body.name;
+  var name=req.body.username;
   var email=req.body.email;
   var password=req.body.password;
   var cpassword=req.body.cpassword;
@@ -63,7 +63,7 @@ router.post('/register', function(req, res, next) {
         email: email
       });
       
-      User.register(newUser, password, (err)=>{
+      User.register(newUser, password, (err, user)=>{
         if (err){
           console.log("Error: Creating new User");
           if(err.name == "UserExistsError"){
@@ -74,11 +74,11 @@ router.post('/register', function(req, res, next) {
             statusText:"Failed to Register (internal Error)",
             isLoggedIn:req.user
           });
-        } else{
-          return passport.authenticate('local')(req, res, ()=>{
-            res.redirect('/');
-          });
-        }
+        };
+        passport.authenticate('local')(req, res, ()=>{
+            res.redirect('/survey-list');
+        });
+        
       })
 
 
