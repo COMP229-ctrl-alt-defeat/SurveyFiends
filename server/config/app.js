@@ -4,7 +4,14 @@ let express = require('express');
 let path = require('path');
 let cookieParser = require('cookie-parser');
 let logger = require('morgan');
-let session=require('express-session');
+
+//Modules for Authentication
+let session = require('express-session')
+let passport = require('passport');
+let passportLocal = require('passport-local');
+let localStrategy = passportLocal.Strategy;
+let flash = require('connect-flash');
+
 
 // database setup
 let mongoose = require('mongoose');
@@ -43,6 +50,13 @@ app.use(session({
   saveUninitialized: true,
   cookie: { secure: false }
 }));
+
+// Initialize flash
+app.use(flash());
+
+//Initialize Passport
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
