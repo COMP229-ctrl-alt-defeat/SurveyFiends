@@ -25,7 +25,7 @@ router.get('*', (req, res, next) => {
 
 /* GET Route for the Survey List page - READ Operation */
 router.get('/', (req, res, next) => {
-    Survey.find((err, surveyList) => {
+    Survey.find({authorID: req.user._id},(err, surveyList) => {
         if(err)
         {
             return console.error(err);
@@ -41,7 +41,7 @@ router.get('/', (req, res, next) => {
 
 router.get('/add', (req, res, next) => {
  
-    Survey.find({authorID: req.user._id},(err, surveyList) => {
+    Survey.find((err, surveyList) => {
         if(err)
         {
             return console.error(err);

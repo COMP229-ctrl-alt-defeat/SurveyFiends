@@ -138,14 +138,18 @@ router.post('/login', function(req, res, next) {
   }
   if (!user) {
       req.flash('loginMessage', 'Authentication Error');
-      res.redirect('/login');
+      res.render('login',{
+        title:"Login",
+        statusText:"Login Failed",
+        isLoggedIn: req.user
+      });
   }
   req.login(user, (err) => {
       if (err) {
           return next(err);
       }
       console.log("logged in as " + req.user.username);
-      return res.redirect('/');
+      return res.redirect('/survey-list');
   })
   })(req, res, next);
 
