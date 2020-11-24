@@ -16,23 +16,19 @@ let checkIfBool = (toCheck)=>{
   }
 }
 
-function restrict(req, res, next){
-  
-}
-
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Home', isLoggedIn:(req.session.isLoggedIn)?true:false});
+  res.render('index', { title: 'Home', isLoggedIn:req.user});
 });
 
 /* GET home page. */
 router.get('/home', function(req, res, next) {
-  res.render('index', { title: 'Home', isLoggedIn:(req.session.isLoggedIn)?true:false});
+  res.render('index', { title: 'Home', isLoggedIn:req.user});
 });
 
 /* GET About Us page. */
 router.get('/about', function(req, res, next) {
-  res.render('about', { title: 'About', isLoggedIn:(req.session.isLoggedIn)?true:false});
+  res.render('about', { title: 'About', isLoggedIn:req.user});
 });
 
 /* GET openSurveysList page. */
@@ -43,7 +39,7 @@ router.get('/openSurveysList', function(req, res, next) {
     if(err){
       return console.log(err);
     }else{
-      res.render('openSurveys/openSurveysList', { title: 'Open Surveys', Surveys: openSurveys, isLoggedIn:(req.session.isLoggedIn)?true:false});
+      res.render('openSurveys/openSurveysList', { title: 'Open Surveys', Surveys: openSurveys, isLoggedIn:req.user});
     };
   });
 });
@@ -61,7 +57,7 @@ router.get('/openSurveysList/:id', (req, res, err)=>{
           return console.log(err);
         }else{
           //res.location(SurveyQuestions[0]._id); -- Error 
-          res.render('openSurveys/displaySurvey',{title:'Open Surveys', Survey: survey, Questions: SurveyQuestions, isLoggedIn:(req.session.isLoggedIn)?true:false});
+          res.render('openSurveys/displaySurvey',{title:'Open Surveys', Survey: survey, Questions: SurveyQuestions, isLoggedIn:req.user});
         }
       })
     }

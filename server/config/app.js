@@ -58,6 +58,14 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
+let userModel = require('../models/user');
+let User = userModel.userAccountModel;
+
+passport.use(User.createStrategy());
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/survey-list', surveyRouter);

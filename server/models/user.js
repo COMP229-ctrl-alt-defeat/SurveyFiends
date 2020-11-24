@@ -10,6 +10,9 @@ let userAccountModel = mongoose.Schema({
         trim: true,
         required: 'username is required'
     },    
+
+    // Using passportJS instead of string password
+    /*
     password: 
     {
         type: String,
@@ -17,6 +20,7 @@ let userAccountModel = mongoose.Schema({
         trim: true,
         required: 'password is required'
     },
+    */
     email:
     {
         type: String,
@@ -41,7 +45,7 @@ let userAccountModel = mongoose.Schema({
 );
 
 //Configure options for User model
-let options = ({missingPasswordError: 'Wrong/ Missing Passowrd'});
+let options = ({missingPasswordError: 'Wrong/Missing Password'});
 userAccountModel.plugin(passportLocalMongoose, options);
 
 module.exports.userAccountModel = mongoose.model('UserAccount', userAccountModel);

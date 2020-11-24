@@ -1,12 +1,15 @@
 var express = require('express');
+const passport = require('passport');
 var router = express.Router();
-var User = require('../models/user');
+var user = require('../models/user');
+let User = user.userAccountModel;
 
 /* GET User Registration */
 router.get('/register', function(req, res, next) {
   res.render('register',{
     title:"Registration",
-    statusText:"", isLoggedIn:(req.session.isLoggedIn)?true:false
+    statusText:"",
+    isLoggedIn:req.user
   });
 });
 
@@ -18,7 +21,8 @@ router.get('/login', function(req, res, next) {
 
   res.render('login',{
     title:"Login",
-    statusText:"", isLoggedIn:(req.session.isLoggedIn)?true:false
+    statusText:"",
+    isLoggedIn: req.user
   });
 });
 
@@ -33,6 +37,7 @@ router.post('/register', function(req, res, next) {
   if(name && email && password){
     //Passwords are equal
     if(password===cpassword){
+      /*
       User.create({
         name: name,
         email: email,
@@ -51,11 +56,38 @@ router.post('/register', function(req, res, next) {
           });
         }
       });
+      */
+
+      let newUser = new User({
+        username: name,
+        email: email
+      });
+      
+      User.register(newUser, password, (err)=>{
+        if (err){
+          console.log("Error: Creating new User");
+          if(err.name == "UserExistsError"){
+            console.log("User already exists");
+          };
+          return res.render('register',{
+            title:"Registration",
+            statusText:"Failed to Register (internal Error)",
+            isLoggedIn:req.user
+          });
+        } else{
+          return passport.authenticate('local')(req, res, ()=>{
+            res.redirect('/');
+          });
+        }
+      })
+
+
     }
     else{
       res.render('register',{
         title:"Registration",
-        statusText:"Passwords do not match", isLoggedIn:(req.session.isLoggedIn)?true:false
+        statusText:"Passwords do not match",
+        isLoggedIn: req.user
       });
     }
   }
@@ -63,13 +95,17 @@ router.post('/register', function(req, res, next) {
   else{
     res.render('register',{
       title:"Registration",
-      statusText:"All Fields are required", isLoggedIn:(req.session.isLoggedIn)?true:false
+      statusText:"All Fields are required",
+      isLoggedIn: req.user
     });
   }
 });
 
 /* POST User Login */
 router.post('/login', function(req, res, next) {
+ 
+ // Using PassportJS instead
+ /* 
   var email=req.body.email;
   var password=req.body.password;
 
@@ -94,13 +130,36 @@ router.post('/login', function(req, res, next) {
       });
     }
   });
+*/
+
+ passport.authenticate('local', (err, user, info) => {
+  if (err) {
+      return next(err);
+  }
+  if (!user) {
+      req.flash('loginMessage', 'Authentication Error');
+      res.redirect('/login');
+  }
+  req.login(user, (err) => {
+      if (err) {
+          return next(err);
+      }
+      console.log("logged in as " + req.user.username);
+      return res.redirect('/');
+  })
+  })(req, res, next);
+
 });
 
 /* POST Logout */
 router.get('/logout', (req,res,next)=>{
+  /*
   req.session.destroy(function(err) {
     res.redirect('/users/login');
-  });
+  }); */
+
+  req.logout();
+  res.redirect('/users/login')
 });
 
 
