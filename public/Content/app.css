@@ -1,5 +1,22 @@
 /* custom css goes here */
+html {
+    position: relative;
+    min-height: 100%;
+  }
 
+  
+body {
+    font-family: "Poppins", Arial, sans-serif;
+    font-weight: 500px;
+    font-size: 17px;
+    background: rgba(194, 192, 192, 0.39);
+    background-image: url('/Images/123.jpg'); 
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    margin: 0 0 100px;}
+        
+ 
+  
 .custom-container{
     margin:0 auto;
 }
@@ -85,7 +102,8 @@
 
 .intro-section{
     background:url(../Images/bg.jpg);
-    padding:50px 20px;
+    background-size: cover;
+    padding:100px 100px;
 }
 
 .intro-section .inner{
@@ -261,10 +279,9 @@ footer{
 }
 
 .bg-default{
-    padding:5px;
-    background:url('../Images/bg.jpg');
-    background-size:cover;
-    background-attachment: fixed;
+    background:url(../Images/bg.jpg);
+    background-size: cover;
+    padding:100px 100px;
 }
 
 .container-fh{
