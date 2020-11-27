@@ -257,7 +257,14 @@ footer{
 
 .form-s1 .textbox::placeholder{
     color:#555;
+    font-weight: bold;
 }
+.display-4{
+    background-color: coral;
+} 
+.d-flex {
+    background-color: coral;
+} 
 
 .form-s1 .textbox:focus{
     color:#000;
