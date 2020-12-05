@@ -19,16 +19,35 @@
     window.addEventListener("load", Start);
 })();
 
-//Get Questions Add page by title
-// if (document.title=="Add Questions"){
-// //var countBox =1;
-// var boxName = 0;
+function formatISODate(dateSelected){
+    date = new Date(dateSelected);
+    year = date.getFullYear();
+    month = date.getMonth()+1;
+    dt = date.getDate();
+    
+    if (dt < 10) {
+      dt = '0' + dt;
+    }
+    if (month < 10) {
+      month = '0' + month;
+    }
 
-// function addQuestion()
-// {
-// var boxName="Question "+countBox; 
-// document.getElementById('responce').innerHTML+='<br/><input type="hidden" name="questionsNumber" value='+countBox+'><br/>';
-// document.getElementById('responce').innerHTML+='<br/><input type="text"  name="question" value=""<br/>';
-// countBox += 1;
-//     }
-// }
+    return(year+'-' + month + '-'+(dt + 1))
+}
+
+if (document.title == "Edit Survey Details"){
+    document.getElementById("getActDate").style.display = 'none';
+    document.getElementById("getExpDate").style.display = 'none';
+
+    let activationField = document.getElementById("getActDate").value;
+    let expiryField = document.getElementById("getExpDate").value;
+
+    let formattedActivationDate = (formatISODate(activationField))
+    let formattedExpiryDate = (formatISODate(expiryField))
+   window.addEventListener("load", (event)=>  {
+        
+        document.getElementById("activationDate").value = (formattedActivationDate);
+        document.getElementById("expiryDate").value = (formattedExpiryDate);
+    });
+ 
+}

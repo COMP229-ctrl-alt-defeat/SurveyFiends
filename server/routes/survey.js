@@ -59,7 +59,9 @@ router.post('/add', (req, res, next) => {
     let newSurvey = Survey({
         "surveyName": req.body.name,
         "authorName": req.body.author,
-        "authorID": req.user._id
+        "authorID": req.user._id,
+        "activationDate": req.body.activationDate,
+        "expiryDate": req.body.expiryDate
     });
 
     Survey.create(newSurvey, (err, Survey) =>{
@@ -106,6 +108,8 @@ router.get('/:id', (req, res, next) => {
       "_id": id,
       "surveyName": req.body.name,
       "authorName": req.body.author,
+      "activationDate": req.body.activationDate,
+      "expiryDate": req.body.expiryDate
     });
   
     Survey.updateOne({_id: id}, editedSurvey, (err) =>{

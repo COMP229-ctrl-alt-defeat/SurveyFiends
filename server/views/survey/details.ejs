@@ -25,23 +25,55 @@
               
               <div class="form-group">
                 <label for="surveyAuthorTextField">Author Name</label>
-                <!-- <input type="text" class="form-control" id="surveyAuthorTextField"
-                placeholder="Survey Author" name="author" value="<%= SurveyList.authorName %>" required> -->
+                
                 <select name="author" class="form-control">
                   <option value="<%= isLoggedIn.username %>"><%= isLoggedIn.username %></option>
                   <option value="Anonymous">Anonymous</option>
                 </select>                
               </div>
+              <% if (title == "Edit Survey Details") { %>
 
-              <button type="submit" class="btn btn-primary"><i class="fa fa-check-square-o"></i> Submit</button>
-              <a href="/survey-list" class="btn btn-warning"><i class="fa fa-undo"></i> Cancel</a>
+               <!--  Gets Actication date from MongoDB -->
+                    <input type="text" name="activationDisplay" value="<%= SurveyList.activationDate %>" id="getActDate" >
+               <!--  Gets Expiry date from MongoDB --> 
+                    <input type="text" name="activationDisplay" value="<%= SurveyList.expiryDate %>"  id="getExpDate" readonly>
+
+                   <div class="form-group">
+                <label for="surveyNameTextField">Change Activation Date</label>
+                <input type="date" class="form-control" id="activationDate"
+                name="activationDate" value="<%= SurveyList.activationDate %>" >
+              </div>
+ 
+             <div class="form-group">
+                <label for="surveyNameTextField">Change Expiry Date</label>
+                <input type="date" class="form-control" id="expiryDate"
+                name="expiryDate" value="<%= SurveyList.expiryDate %>" >
+              </div>
               
+              <% } else  { %>
+
+                <div class="form-group">
+                  <label>Set Activation Date</label>
+                  <input type="date" class="form-control" id="activationDate"
+                  name="activationDate" value="<%= SurveyList.activationDate %>" required>
+                </div>
+   
+               <div class="form-group">
+                  <label>Set Expiry Date</label>
+                  <input type="date" class="form-control" id="expiryDate"
+                  name="expiryDate" value="<%= SurveyList.expiryDate %>" required>
+                </div> 
+                <% } %>
+              <button type="submit" class="btn btn-primary"><i class="fa fa-check-square-o"></i> Submit</button>
+              <a href="/survey-list" class="btn btn-warning"><i class="fa fa-undo"></i> Cancel</a> 
             </form>
           </div>
         </div>
+        
 
         <% if (title == "Edit Survey Details") { %>
           <div class="col-md-offset col-md-7">
+            
             <div class="row">
               <h2>Survey Questions</h2>
               <a href="/survey-list/<%= SurveyList._id %>/addQuestions" class="btn btn-primary rounded-circle h-50 ml-5"><i class="fa fa-plus"></i></a>
