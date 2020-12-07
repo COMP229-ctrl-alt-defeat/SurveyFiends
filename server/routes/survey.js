@@ -60,6 +60,7 @@ router.post('/add', (req, res, next) => {
         "surveyName": req.body.name,
         "authorName": req.body.author,
         "authorID": req.user._id,
+        "surveyDescription": req.body.surveyDescription,
         "activationDate": req.body.activationDate,
         "expiryDate": req.body.expiryDate
     });
@@ -108,6 +109,7 @@ router.get('/:id', (req, res, next) => {
       "_id": id,
       "surveyName": req.body.name,
       "authorName": req.body.author,
+      "surveyDescription": req.body.surveyDescription,
       "activationDate": req.body.activationDate,
       "expiryDate": req.body.expiryDate
     });

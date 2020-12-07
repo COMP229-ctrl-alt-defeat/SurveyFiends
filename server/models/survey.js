@@ -10,6 +10,7 @@ let surveyModel = mongoose.Schema({
     authorName: String,
     authorID: String,
     surveyName: String,
+    surveyDescription: String,
     authorPubDate: {type: Date, default: Date.now},
     activationDate: {type: Date},
     expiryDate: {type:Date}

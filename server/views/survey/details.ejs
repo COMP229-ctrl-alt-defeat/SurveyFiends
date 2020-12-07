@@ -31,6 +31,13 @@
                   <option value="Anonymous">Anonymous</option>
                 </select>                
               </div>
+
+               
+              <div class="form-group">
+                <label for="surveyAuthorTextField">Survey Description</label>
+                <input type="text" class="form-control" id="surveyDescription" name="surveyDescription" value="<%= SurveyList.surveyDescription %>" required>            
+            </div>
+
               <% if (title == "Edit Survey Details") { %>
 
                <!--  Gets Actication date from MongoDB -->

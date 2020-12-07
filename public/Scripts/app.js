@@ -19,6 +19,7 @@
     window.addEventListener("load", Start);
 })();
 
+//Formats MongoDB ISO date to YYYYMMDD (HTML FORMAT)
 function formatISODate(dateSelected){
     date = new Date(dateSelected);
     year = date.getFullYear();
@@ -32,9 +33,9 @@ function formatISODate(dateSelected){
       month = '0' + month;
     }
 
-    return(year+'-' + month + '-'+(dt + 1))
+    return(year+'-' + month + '-'+ dt)
 }
-
+//Used to format dates for survey lists
 if (document.title == "Edit Survey Details"){
     document.getElementById("getActDate").style.display = 'none';
     document.getElementById("getExpDate").style.display = 'none';
@@ -51,3 +52,5 @@ if (document.title == "Edit Survey Details"){
     });
  
 }
+
+

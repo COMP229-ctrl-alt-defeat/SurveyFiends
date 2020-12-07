@@ -16,7 +16,7 @@
                 <!-- Header Row-->
                 <tr class="d-flex">
                     <th class="text-center col-2">Survey Name</th>
-                    <th class="text-center col-2">Author</th>
+                    <th class="text-center col-2">Description</th>
                     <th class="text-center col-2">Activation Date</th>
                     <th class="text-center col-2">Expiry Date</th>
                     <th class="text-center col-2">Edit/Add</th>
@@ -28,7 +28,7 @@
                 <% for(let count = 0; count < SurveyList.length; count++) { %>
                     <tr class="d-flex">
                         <td class="text-center col-2"><%= SurveyList[count].surveyName %></td>
-                        <td class="text-center col-2"><%= SurveyList[count].authorName %></td>
+                        <td class="text-center col-2"><%= SurveyList[count].surveyDescription %></td>
                         <td class="text-center col-2"><%= SurveyList[count].activationDate.toDateString() %></td>
                         <td class="text-center col-2"><%= SurveyList[count].expiryDate.toDateString() %></td>
                         <td class="text-center col-2">
