@@ -31,6 +31,26 @@ router.get('/about', function(req, res, next) {
   res.render('about', { title: 'About', isLoggedIn:req.user});
 });
 
+
+/* GET answer page */
+router.get("/answers/:id", (req, res,next) => {
+
+   let id = req.params.id;
+  console.log("farzam123")
+  console.log(id);
+  Answer.find({surveyID: req.params.id}, (err, userAnswer) =>{
+    if(err){
+      return console.log(err);
+    }
+    else{
+      console.log(userAnswer);
+      res.render('openSurveys/answerPage', {title: 'Answer Page', Answers: userAnswer, isLoggedIn:req.user});
+    }
+
+    
+  });
+  });
+
 /* GET openSurveysList page. */
 router.get('/openSurveysList', function(req, res, next) {
   let now = Date.now();

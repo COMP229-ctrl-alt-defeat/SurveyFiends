@@ -3,7 +3,7 @@ let mongoose = require('mongoose');
 let answerModel = mongoose.Schema({
     surveyID: String,
     questionID: String,
-    responderPubDate: {type: Date, default: Date.now},
+// responderPubDate: {type: Date, default: Date.now},
     responderAnswer: Boolean
 },
 {

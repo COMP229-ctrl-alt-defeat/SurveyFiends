@@ -1,0 +1,39 @@
+<%- include ../partials/header.ejs %>
+
+<%- include ../partials/main_nav.ejs %>
+
+  <!-- Main Content -->
+
+  <main class="container">
+    <div class="jumbotron">
+      <h1 class="display-4"><%= title %></h1>
+    </div>
+ 
+      <div class="container">
+        
+        <table class="table table-bordered table-striped table-hover mt-3">
+
+          <tr class="d-flex">
+              <th class="text-center col-3">Survey Name</th>
+              <th class="text-center col-3">Description</th>
+              <th class="text-center col-3">Activation Date</th>
+              <th class="text-center col-3">Expiry Date</th>
+          </tr>
+
+           <% for(let count = 0; count < Answers.length; count++) { %>
+              <tr class="d-flex">
+                  <td class="text-center col-3"><%= Answers[count]._id %></td>
+                  <td class="text-center col-3"><%= Answers[count].surveyID %></td>
+                  <td class="text-center col-3"><%= Answers[count].questionID %></td>
+                  <td class="text-center col-3" id="expiryDate"><%= Answers[count].responderAnswer %></td>
+              </tr>
+          <% } %> 
+      </table>
+ 
+    </div>
+
+  </main>
+  
+<%- include ../partials/bottom_nav.ejs %>  
+
+<%- include ../partials/footer.ejs %>

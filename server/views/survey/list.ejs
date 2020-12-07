@@ -27,7 +27,7 @@
 
                 <% for(let count = 0; count < SurveyList.length; count++) { %>
                     <tr class="d-flex">
-                        <td class="text-center col-2"><%= SurveyList[count].surveyName %></td>
+                        <td class="text-center col-2"><a href="/survey-list/<%= SurveyList[count]._id %>"><%= SurveyList[count].surveyName %></a></td>
                         <td class="text-center col-2"><%= SurveyList[count].surveyDescription %></td>
                         <td class="text-center col-2"><%= SurveyList[count].activationDate.toDateString() %></td>
                         <td class="text-center col-2"><%= SurveyList[count].expiryDate.toDateString() %></td>
