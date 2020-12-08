@@ -6,6 +6,8 @@ let mongoose = require('mongoose');
 let Survey = require('../models/survey');
 let Question = require('../models/question');
 let Answer = require('../models/answer');
+const survey = require('../models/survey');
+const answer = require('../models/answer');
 
 // Helper function to convert string to boolean
 let checkIfBool = (toCheck)=>{
@@ -33,9 +35,9 @@ router.get('/about', function(req, res, next) {
 
 
 /* GET answer page */
-router.get("/answers/:id", (req, res,next) => {
+router.get("/answers/:id", (req, res, next) => {
 
-   let id = req.params.id;
+    let id = req.params.id;
   console.log("farzam123")
   console.log(id);
   Answer.find({surveyID: req.params.id}, (err, userAnswer) =>{
@@ -49,7 +51,20 @@ router.get("/answers/:id", (req, res,next) => {
 
     
   });
-  });
+
+  /*
+  console.log("farzam123")
+  console.log(id);
+  let surveyID = req.params.id;
+  Survey.findById(surveyID, (err, survey) =>{
+    Question.find({surveyID: surveyID}).sort('questionsnumber').exec((err, SurveyQuestions) => {
+      Answer.find({surveyID: surveyID}).exec((err, answersList)=>{
+      res.render('openSurveys/answerPage', {title: 'Answer Page', Answers: answersList, survey:survey, isLoggedIn:req.user});
+      })
+    })
+  }) */
+
+});
 
 /* GET openSurveysList page. */
 router.get('/openSurveysList', function(req, res, next) {
