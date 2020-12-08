@@ -15,7 +15,9 @@ body {
     background-size: 100% 100%;
     margin: 0 0 100px;}
         
- 
+.navbar {
+    background-image:linear-gradient(90deg, rgba(35, 122, 146, 0.8), rgba(42, 56, 44, 0.8));
+}
   
 .custom-container{
     margin:0 auto;
@@ -259,11 +261,11 @@ footer{
     color:#555;
     font-weight: bold;
 }
-.display-4{
-    background-color: coral;
+.container-display-4{
+    background-color:#13BEED;
 } 
 .d-flex {
-    background-color: coral;
+    background-color:#13BEED;
 } 
 
 .form-s1 .textbox:focus{

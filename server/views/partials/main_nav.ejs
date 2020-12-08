@@ -9,7 +9,7 @@
   
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
-
+      
         <li class="nav-item"><a href="#" class="nav-link disabled text-light">Welcome, 
           <% if (isLoggedIn){ %>
             <%= isLoggedIn.username %>
@@ -17,10 +17,8 @@
             Guest
           <% } %>
         </a>
-        </li>   
-          
-
-        <% if (title == "Home"){ %>
+        </li>
+                <% if (title == "Home"){ %>
         <li class="nav-item active">
         <% } else  { %>
         <li class="nav-item">
