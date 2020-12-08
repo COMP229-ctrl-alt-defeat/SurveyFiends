@@ -81,7 +81,7 @@ router.post('/add', (req, res, next) => {
 
 router.get('/:id', (req, res, next) => {
   
-    //Finding specified book by ID and passing it to details view
+    //Finding specified survey by ID and passing it to details view
     let id = req.params.id;
   
     Survey.findById(id, (err, surveyToEdit) =>{
@@ -90,6 +90,10 @@ router.get('/:id', (req, res, next) => {
             console.log(err);
             res.end(err); 
         }
+        //Check if the current user is also the Survey Creator
+        else if(req.user.username != surveyToEdit.authorName){
+          res.redirect('/survey-list')
+        } 
         else
         {
           Question.find({surveyID: id}).sort("questionsNumber").exec((err, questions) =>{
