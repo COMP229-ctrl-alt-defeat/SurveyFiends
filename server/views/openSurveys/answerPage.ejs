@@ -5,10 +5,10 @@
   <!-- Main Content -->
 
   <main class="container">
-    <div class="jumbotron">
-      <h1 class="display-4"><%= title %></h1>
+    <div class="jumbotron row">
+      <h1 class="display-2"><%= title %></h1>
     </div>
- 
+      <!--
       <div class="container">
         
         <table class="table table-bordered table-striped table-hover mt-3">
@@ -30,6 +30,38 @@
           <% } %> 
       </table>
  
+    </div> -->
+    <div class="row">
+      <h1 class="col-12"><%= Survey.surveyName %></h1>
+      <h5 class="mx-4"><small class="text-muted col-12">Click <a href="/generatePDF/<%=Survey._id%>" target="_blank">here</a> to download as a pdf</small></h5>
+    </div>
+    <div class="row">
+      <div class="col">
+        <% for(let qCount = 0; qCount < Questions.length; qCount++){ %>
+          <div class="row justify-content-md-center mt-4">
+            <h2 class="col-auto"><%= Questions[qCount].question %></h2> 
+          </div>
+          <%  let trueCount = 0;
+              let falseCount = 0;
+              for(let ansCount = 0; ansCount < Answers.length; ansCount++){ 
+                if(Answers[ansCount].questionID == Questions[qCount]._id){
+                  if(Answers[ansCount].responderAnswer == true){
+                    trueCount++;
+                  }else{
+                    falseCount++;
+                  }
+                }
+          } %>
+          <div class="row justify-content-md-center">
+            <div class="col-auto"><p>True:</p></div>
+            <div class="col-auto"><p><%= trueCount %></p></div>
+          </div>
+          <div class="row justify-content-md-center">
+            <div class="col-auto"><p>False:</p></div>
+            <div class="col-auto"><p><%= falseCount %></p></div>
+          </div>
+        <% } %>
+      </div>
     </div>
 
   </main>
