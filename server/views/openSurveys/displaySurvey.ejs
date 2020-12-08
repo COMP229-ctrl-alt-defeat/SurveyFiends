@@ -4,12 +4,10 @@
   
 
   <!-- Main Content -->
-  <main class="container">
-    <div class="jumbotron">
-      <h2 class="row display-4"><%= Survey.surveyName %></h2>
+  <main class="section mt nl-section custom-container-shrink">
+      <h2 class="section-title left" style="margin-bottom:15px;"><%= Survey.surveyName %></h2>
+      <h4>By: <%= Survey.authorName %> </h4>
       <hr>
-      <h4 class="row display-5 text-secondary justify-content-end">By: <%= Survey.authorName %> </h4>
-    </div>
     <form method="post">
       <!-- <input type="hidden" name="surveyId" value="<%= Survey._id %> "> -->
       <% for( let index = 0; index < Questions.length; index++ ) { %>

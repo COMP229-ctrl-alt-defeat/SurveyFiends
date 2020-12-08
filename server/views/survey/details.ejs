@@ -3,8 +3,8 @@
 <%- include ../partials/main_nav.ejs %>
   
     <!-- MAIN CONTENT -->
-    <div class="container">
-      <h1><%= title %></h1>
+    <div class="section nl-section mt custom-container-shrink">
+      <h1 class="section-title left"><%= title %></h1>
       <div class="row mt-3">
         <div class="col-md-offset col-md-5 pr-4">
           <h2>Survey Details</h2>
@@ -13,7 +13,7 @@
             <br>We currently only allow True or False questions.
             <br>The surveys created will be available for 30 days after which only the creator will have access to it.</p>
           <% } %>
-
+            <br/>
           <div class="px-4">
             <form class="form" method="post">
 
@@ -70,7 +70,7 @@
                   <input type="date" class="form-control" id="expiryDate"
                   name="expiryDate" value="<%= SurveyList.expiryDate %>" required>
                 </div> 
-                <% } %>
+                <% } %><br/>
               <button type="submit" class="btn btn-primary"><i class="fa fa-check-square-o"></i> Submit</button>
               <a href="/survey-list" class="btn btn-warning"><i class="fa fa-undo"></i> Cancel</a> 
             </form>
@@ -88,7 +88,7 @@
             <% for(let count = 0; count < Questions.length; count++){ %>
               <div class="row px-4">
                 <h4>Question <%= Questions[count].questionsNumber %></h1>
-              </div>
+              </div><br/>
               <div class="row px-4">
                 <p class="col-10"><%=Questions[count].question%></p>
                 <a href="/survey-list/<%= SurveyList._id %>/editQuestions/<%= Questions[count]._id %>" class="col-1">edit</a>
