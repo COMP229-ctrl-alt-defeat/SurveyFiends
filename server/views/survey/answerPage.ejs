@@ -4,35 +4,11 @@
 
   <!-- Main Content -->
 
-  <main class="container">
-    <div class="jumbotron row">
-      <h1 class="display-2"><%= title %></h1>
-    </div>
-      <!--
-      <div class="container">
-        
-        <table class="table table-bordered table-striped table-hover mt-3">
+  <main class="section mt custom-container-shrink">
+    <h1 class="section-title left"><%= title %></h1>
 
-          <tr class="d-flex">
-              <th class="text-center col-3">Survey Name</th>
-              <th class="text-center col-3">Description</th>
-              <th class="text-center col-3">Activation Date</th>
-              <th class="text-center col-3">Expiry Date</th>
-          </tr>
-
-           <% for(let count = 0; count < Answers.length; count++) { %>
-              <tr class="d-flex">
-                  <td class="text-center col-3"><%= Answers[count]._id %></td>
-                  <td class="text-center col-3"><%= Answers[count].surveyID %></td>
-                  <td class="text-center col-3"><%= Answers[count].questionID %></td>
-                  <td class="text-center col-3" id="expiryDate"><%= Answers[count].responderAnswer %></td>
-              </tr>
-          <% } %> 
-      </table>
- 
-    </div> -->
     <div class="row">
-      <h1 class="col-12"><%= Survey.surveyName %></h1>
+      <h1 class="col-12 mx-3"><%= Survey.surveyName %></h1>
       <h5 class="mx-4"><small class="text-muted col-12">Click <a href="/generatePDF/<%=Survey._id%>" target="_blank">here</a> to download as a pdf</small></h5>
     </div>
     <div class="row">
@@ -69,3 +45,27 @@
 <%- include ../partials/bottom_nav.ejs %>  
 
 <%- include ../partials/footer.ejs %>
+
+<!--
+      <div class="container">
+        
+        <table class="table table-bordered table-striped table-hover mt-3">
+
+          <tr class="d-flex">
+              <th class="text-center col-3">Survey Name</th>
+              <th class="text-center col-3">Description</th>
+              <th class="text-center col-3">Activation Date</th>
+              <th class="text-center col-3">Expiry Date</th>
+          </tr>
+
+          <% for(let count = 0; count < Answers.length; count++) { %>
+            <tr class="d-flex">
+                <td class="text-center col-3"><%= Answers[count]._id %></td>
+                <td class="text-center col-3"><%= Answers[count].surveyID %></td>
+                <td class="text-center col-3"><%= Answers[count].questionID %></td>
+                <td class="text-center col-3" id="expiryDate"><%= Answers[count].responderAnswer %></td>
+            </tr>
+        <% } %> 
+    </table>
+
+  </div> -->

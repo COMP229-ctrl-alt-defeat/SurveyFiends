@@ -14,29 +14,31 @@
             <br/><br/>
             <table class="table-s1">
                 <!-- Header Row-->
-                <tr class="d-flex">
+                <tr class="">
                     <th class="text-center col-2">Survey Name</th>
                     <th class="text-center col-2">Description</th>
                     <th class="text-center col-2">Activation Date</th>
                     <th class="text-center col-2">Expiry Date</th>
-                    <th class="text-center col-2">Edit/Add</th>
-                    <th class="text-center col-2">Delete</th>
+                    <th class="text-center col-2">Results</th>
+                    <th class="text-center col-1">Edit/Add</th>
+                    <th class="text-center col-1">Delete</th>
                 </tr>
 
                 <!-- Repeatable Template Row -->
 
                 <% for(let count = 0; count < SurveyList.length; count++) { %>
-                    <tr class="d-flex">
+                    <tr class="">
                         <td class="text-center col-2"><%= SurveyList[count].surveyName %></td>
                         <td class="text-center col-2"><%= SurveyList[count].surveyDescription %></td>
                         <td class="text-center col-2"><%= SurveyList[count].activationDate.toDateString() %></td>
                         <td class="text-center col-2"><%= SurveyList[count].expiryDate.toDateString() %></td>
-                        <td class="text-center col-2">
-                        <a href="/survey-list/<%= SurveyList[count]._id %>" class="btn btn-warning"><i class="fa fa-edit"></i> Edit/Add</a>
+                        <td class="text-center col-2"><a class="links" href='/results/<%= SurveyList[count]._id %>'>Results</a></td>
+                        <td class="text-center col-1">
+                            <a href="/survey-list/<%= SurveyList[count]._id %>" class="btn btn-warning"><i class="fa fa-edit"></i> Edit/Add</a>
                         </td>
-                        <td class="text-center col-2">
-                        <a href="/survey-list/delete/<%= SurveyList[count]._id %>" class="btn btn-danger"><i class="fa fa-trash-alt"></i> Delete</a>
-                         </td>
+                        <td class="text-center col-1">
+                            <a href="/survey-list/delete/<%= SurveyList[count]._id %>" class="btn btn-danger"><i class="fa fa-trash-alt"></i> Delete</a>
+                        </td>
                     </tr>
                 <% } %>
             </table>

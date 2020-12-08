@@ -8,27 +8,29 @@
       <h2 class="section-title left" style="margin-bottom:15px;"><%= Survey.surveyName %></h2>
       <h4>By: <%= Survey.authorName %> </h4>
       <hr>
-    <form method="post">
-      <!-- <input type="hidden" name="surveyId" value="<%= Survey._id %> "> -->
-      <% for( let index = 0; index < Questions.length; index++ ) { %>
-        <div class="form-group">
-          <h4>Question <%= Questions[index].questionsNumber %> </h4>
-          <p class="pl-4"><%= Questions[index].question %> </p>
+    <div class="row justify-content-center">
+      <form method="post" class="col-8 mx-auto">
+        <!-- <input type="hidden" name="surveyId" value="<%= Survey._id %> "> -->
+        <% for( let index = 0; index < Questions.length; index++ ) { %>
+          <div class="form-group">
+            <h4>Question <%= Questions[index].questionsNumber %> </h4>
+            <p class="pl-4 question"><%= Questions[index].question %> </p>
 
-          <input type="hidden" name="question<%= index %>" value="<%= Questions[index]._id %>">
+            <input type="hidden" name="question<%= index %>" value="<%= Questions[index]._id %>">
 
-          <label class="" for="t<%= index %>">True</label>
-          <input type="radio" id="t<%= index %>" name="q<%= index %>" class="form-checked" value="true" required>
-                                                  <!-- q<%= index %> is there to avoid grouping all possible radio buttons into one -->
-          <label class="" for="f<%= index %>">False</label>
-          <input type="radio" id="f<%= index %>" name="q<%= index %>" class="form-checked" value="false" required>
-        </div>
-        <br>
-        <% } %>
+            <label class="ml-4 mr-2" for="t<%= index %>">True</label>
+            <input type="radio" class="" id="t<%= index %>" name="q<%= index %>" class="form-checked" value="true" required>
+                                                    <!-- q<%= index %> is there to avoid grouping all possible radio buttons into one -->
+            <label class="ml-4 mr-2" for="f<%= index %>">False</label>
+            <input type="radio" class="" id="f<%= index %>" name="q<%= index %>" class="form-checked" value="false" required>
+          </div>
+          <br>
+          <% } %>
 
-        <button type="submit" id="surveyComplete" class="btn btn-primary"><i class="fa fa-check-square-o"></i> Submit</button>
-        <a href="/openSurveysList" class="btn btn-warning"><i class="fa fa-undo"></i> Cancel</a>
-    </form>
+          <button type="submit" id="surveyComplete" class="btn btn-primary"><i class="fa fa-check-square-o"></i> Submit</button>
+          <a href="/openSurveysList" class="btn btn-warning"><i class="fa fa-undo"></i> Cancel</a>
+      </form>
+    </div>
   </main>
   
 <%- include ../partials/bottom_nav.ejs %>  

@@ -60,7 +60,7 @@ router.get("/results/:id", (req, res, next) => {
       console.log(SurveyQuestions);
       Answer.find({surveyID: surveyID}).exec((err, answersList)=>{
         console.log(answersList);
-        res.render('openSurveys/answerPage', {title: 'Results', Survey:survey, Questions: SurveyQuestions, Answers:answersList, isLoggedIn:req.user});
+        res.render('survey/answerPage', {title: 'Results', Survey:survey, Questions: SurveyQuestions, Answers:answersList, isLoggedIn:req.user});
       })
     })
   })
