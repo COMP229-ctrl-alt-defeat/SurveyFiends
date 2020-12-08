@@ -5,10 +5,10 @@
   <!-- Main Content -->
 
   <main class="container">
-    <div class="jumbotron">
+    <div class="jumbotron row">
       <h1 class="display-2"><%= title %></h1>
     </div>
- 
+      <!--
       <div class="container">
         
         <table class="table table-bordered table-striped table-hover mt-3">
@@ -30,7 +30,26 @@
           <% } %> 
       </table>
  
+    </div> -->
+    <div class="row">
+      <p class="display-4"><%= Survey.surveyName %></p>
     </div>
+    <% for(let qCount = 0; qCount < Questions.length; qCount++){ %>
+      <p class="mx-4"><%= Questions[qCount].question %></p>
+      <%  let trueCount = 0;
+          let falsecount = 0;
+          for(let ansCount = 0; ansCount < Answers.length; ansCount++){ 
+            if(Answers[ansCount].questionID == Questions[qCount]._id){
+              if(Answers[ansCount].responderAnswer == true){
+                trueCount++;
+              }else{
+                falsecount++;
+              }
+            }
+      } %>
+      <p>True: <%= trueCount %></p>
+      <p>False: <%= falsecount %></p>
+    <% } %>
 
   </main>
   
