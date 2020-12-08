@@ -34,10 +34,10 @@ router.get('/about', function(req, res, next) {
 });
 
 
-/* GET answer page */
-router.get("/answers/:id", (req, res, next) => {
+/* GET Results page */
+router.get("/results/:id", (req, res, next) => {
 
-    let id = req.params.id;
+   /* let id = req.params.id;
   console.log("farzam123")
   console.log(id);
   Answer.find({surveyID: req.params.id}, (err, userAnswer) =>{
@@ -50,19 +50,21 @@ router.get("/answers/:id", (req, res, next) => {
     }
 
     
-  });
-
-  /*
+  });*/
+  
   console.log("farzam123")
-  console.log(id);
   let surveyID = req.params.id;
+  console.log(surveyID);
   Survey.findById(surveyID, (err, survey) =>{
+    console.log(survey);
     Question.find({surveyID: surveyID}).sort('questionsnumber').exec((err, SurveyQuestions) => {
+      console.log(SurveyQuestions);
       Answer.find({surveyID: surveyID}).exec((err, answersList)=>{
-      res.render('openSurveys/answerPage', {title: 'Answer Page', Answers: answersList, survey:survey, isLoggedIn:req.user});
+        console.log(answersList);
+        res.render('openSurveys/answerPage', {title: 'Results', Survey:survey, Questions: SurveyQuestions, Answers:answersList, isLoggedIn:req.user});
       })
     })
-  }) */
+  })
 
 });
 
