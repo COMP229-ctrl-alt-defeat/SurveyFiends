@@ -6,8 +6,7 @@ let mongoose = require('mongoose');
 let Survey = require('../models/survey');
 let Question = require('../models/question');
 let Answer = require('../models/answer');
-const survey = require('../models/survey');
-const answer = require('../models/answer');
+
 
 // Helper function to convert string to boolean
 let checkIfBool = (toCheck)=>{
