@@ -11,7 +11,7 @@
           <% if(title === "Add New Survey") { %> 
           <p class="text-secondary">Thank you for using our survey creator.
             <br>We currently only allow True or False questions.
-            <br>The surveys created will be available for 30 days after which only the creator will have access to it.</p>
+            <br>The surveys created will be available until the specified date after which only the creator will have access to it.</p>
           <% } %>
             <br/>
           <div class="px-4">
@@ -89,10 +89,10 @@
               <div class="row px-4">
                 <h4>Question <%= Questions[count].questionsNumber %></h1>
               </div><br/>
-              <div class="row px-4">
-                <p class="col-10"><%=Questions[count].question%></p>
-                <a href="/survey-list/<%= SurveyList._id %>/editQuestions/<%= Questions[count]._id %>" class="col-1">edit</a>
-                <a href="/survey-list/deleteQuestion/<%= SurveyList._id %>/<%= Questions[count]._id %>" class="col-1">delete</a>
+              <div class="row px-3">
+                <p class="col-8"><%=Questions[count].question%></p>
+                <a href="/survey-list/<%= SurveyList._id %>/editQuestions/<%= Questions[count]._id %>" class="col-2">edit</a>
+                <a href="/survey-list/deleteQuestion/<%= SurveyList._id %>/<%= Questions[count]._id %>" class="col-1 text-danger">delete</a>
               </div>
             <% } %>
           </div>          
